@@ -1,10 +1,10 @@
 from fastapi import FastAPI
-
 from app.database.database import engine, Base
-
 from app.models.user import User
 from app.models.favorite import Favorite
 from app.models.search_history import SearchHistory
+from app.routes.auth import router as auth_router
+from app.routes.protected import router as protected_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -13,6 +13,9 @@ app = FastAPI(
     description="Modern dashboard API for tech trends and AI insights",
     version="1.0.0"
 )
+
+app.include_router(auth_router)
+app.include_router(protected_router)
 
 @app.get("/")
 def root():
