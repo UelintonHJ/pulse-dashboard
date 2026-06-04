@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login/Login';
 import Favorites from './pages/Favorites/Favorites';
 import Register from './pages/Register/Register';
+import Search from './pages/Search/Search';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/search' element={<Search />} />
       </Routes>
 
    </BrowserRouter>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import SearchBar from "../SearchBar/SearchBar";
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -31,6 +32,8 @@ function Navbar() {
                     <Link to="/favorites">Favorites</Link>
                     <Link to="/login">Login</Link>
                 </div>
+
+                <SearchBar />
 
                 <div className="flex items-center gap-3">
 

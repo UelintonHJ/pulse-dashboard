@@ -12,6 +12,7 @@ from app.routes.news import router as news_router
 from app.routes.github import router as github_router
 from app.routes.jobs import router as jobs_router
 from app.routes.ai import router as ai_router
+from app.routes.search import router as search_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -27,6 +28,7 @@ app.include_router(news_router)
 app.include_router(github_router)
 app.include_router(jobs_router)
 app.include_router(ai_router)
+app.include_router(search_router)
 
 @app.get("/")
 def root():
