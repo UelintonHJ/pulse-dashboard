@@ -1,5 +1,6 @@
-import { useState, useEffect } from  "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, scale } from "framer-motion";
+import { staggerContainer, slideUp } from "../../animations/variants";
 import AnimatedCard from "../../components/Card/AnimatedCard"
 import SkeletonCard from "../../components/Skeleton/SkeletonCard";
 
@@ -11,15 +12,15 @@ export default function Home() {
             setLoading(false);
         }, 2000);
 
-        return  () => clearTimeout(timer);
+        return () => clearTimeout(timer);
     }, []);
 
     return (
         <div className="pt-32 px-8">
             <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+                variants={slideUp}
+                initial="hidden"
+                animate="visible"
                 className="text-center"
             >
                 <h1 className="text-6xl font-bold text-cyan-400">
@@ -36,40 +37,69 @@ export default function Home() {
                     in one place.
                 </p>
 
-                <button className="mt-10 px-8 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 transition">
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="mt-10 px-8 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 transition"
+                >
                     Explore Dashboard
-                </button>
+                </motion.button>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-6 mt-20">
+            <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+                className="grid md:grid-cols-3 gap-6 mt-20"
+            >
                 {loading ? (
                     <>
-                        <SkeletonCard/>
-                        <SkeletonCard/>
-                        <SkeletonCard/>
+                        <motion.div
+                            variants={slideUp}
+                        >
+                            <SkeletonCard />
+                        </motion.div>
+
+                        <motion.div
+                            variants={slideUp}
+                        >
+                            <SkeletonCard />
+                        </motion.div>
+
+                        <motion.div
+                            variants={slideUp}
+                        >
+                            <SkeletonCard />
+                        </motion.div>
                     </>
                 ) : (
                     <>
-                        <AnimatedCard 
-                            icon="🤖"
-                            title="Artificial Intelligence"
-                            description="Latest AI trends"
-                        />
+                        <motion.div variants={slideUp}>
+                            <AnimatedCard
+                                icon="🤖"
+                                title="Artificial Intelligence"
+                                description="Latest AI trends"
+                            />
+                        </motion.div>
 
-                        <AnimatedCard 
-                            icon="💼"
-                            title="Tech Jobs"
-                            description="Junior and internship opportunities"
-                        />
+                        <motion.div variants={slideUp}>
+                            <AnimatedCard
+                                icon="💼"
+                                title="Tech Jobs"
+                                description="Junior and internship opportunities"
+                            />
+                        </motion.div>
 
-                        <AnimatedCard 
-                            icon="🚀"
-                            title="GitHub"
-                            description="Trending repositories"
-                        />
+                        <motion.div variants={slideUp}>
+                            <AnimatedCard
+                                icon="🚀"
+                                title="GitHub"
+                                description="Trending repositories"
+                            />
+                        </motion.div>
                     </>
-                )}  
-            </div>
+                )}
+            </motion.div>
         </div>
     );
 }

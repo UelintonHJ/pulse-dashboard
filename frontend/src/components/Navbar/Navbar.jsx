@@ -1,11 +1,24 @@
-import { useState } from  "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <nav className="fixed top-0 w-full backdrop-blur-md bg-white/10 border-b border-white/10 z-50">
+        <motion.nav
+            initial={{
+                y: -100,
+                opacity: 0
+            }}
+            animate={{
+                y: 0,
+                opacity: 1
+            }}
+            transition={{
+                duration: 0.5
+            }}
+            className="fixed top-0 w-full backdrop-blur-md bg-white/10 border-b border-white/10 z-50">
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
                 <h1 className="text-2xl font-bold text-cyan-400">
@@ -44,7 +57,7 @@ function Navbar() {
                     <Link to="/login">Login</Link>
                 </div>
             )}
-        </nav>
+        </motion.nav>
     );
 }
 
